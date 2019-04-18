@@ -55,6 +55,10 @@ const paths = {
     src: `${dirs.entry}/media/**/*.+(gif|jpg|jpeg|png|svg)`,
     dest: `${dirs.output}/static/media`,
   },
+  fonts: {
+    src: `${dirs.entry}/media/fonts/*`,
+    dest: `${dirs.output}/static/media/fonts`,
+  },
   styles: {
     src: `${dirs.entry}/styles/**/*.+(css|scss)`,
     dest: `${dirs.output}/static/styles`,
@@ -242,6 +246,27 @@ gulp.task('media', () =>
 );
 
 //------------------------------------------------------------------------------
+// Fonts.
+//------------------------------------------------------------------------------
+
+gulp.task('fonts', () =>
+  gulp
+    // Input.
+    .src(paths.fonts.src)
+    // Report errors.
+    .pipe(plumber(pluginConfig.plumber))
+    // Production: Do nothing.
+    // Development: Pipe only changed files to the next process.
+    .pipe(isProd ? noop() : changed(paths.fonts.dest))
+    // Production: Optimize.
+    // Development: Do Nothing.
+    .pipe(gulp.dest(paths.fonts.dest))
+    // Production: Do nothing.
+    // Development: Stream changes back to 'watch' tasks.
+    .pipe(isProd ? noop() : browserSync.stream()),
+);
+
+//------------------------------------------------------------------------------
 // Styles.
 //------------------------------------------------------------------------------
 
@@ -320,6 +345,7 @@ gulp.task('watch', () => {
   gulp.watch(paths.public.src, ['public']);
   gulp.watch(paths.views.watch, ['views:watch']);
   gulp.watch(paths.media.src, ['media']);
+  gulp.watch(paths.fonts.src, ['fonts']);
   gulp.watch(paths.styles.src, ['styles']);
   gulp.watch(paths.scripts.src[0], ['scripts:watch']);
 });
@@ -336,7 +362,7 @@ gulp.task('clean', () => del([dirs.output]));
 //------------------------------------------------------------------------------
 
 gulp.task('default', callback => {
-  const compile = ['public', 'views', 'media', 'styles', 'scripts'];
+  const compile = ['public', 'views', 'media', 'fonts', 'styles', 'scripts'];
   if (isProd) {
     // Production.
     runSequence('clean', compile, callback);
