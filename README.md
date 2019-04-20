@@ -1,4 +1,13 @@
-# gulp-nunjucks-boilerplate
+# Frontend Boilerplate
+
+__Made with:__
+
+- [Michael Scwobe's Gulp Nunjucks Boilerplate](https://github.com/michaelschwobe/gulp-nunjucks-boilerplate)
+- Sasstrakt - An ITCSS and BEM sass folder structure from [Substrakt](https://substrakt.com)
+- Andreas Larsens' [easing gradients](https://css-tricks.com/easing-linear-gradients/)
+
+
+## gulp-nunjucks-boilerplate
 
 > A scalable [Gulp](http://gulpjs.com/) generated [Nunjucks](https://mozilla.github.io/nunjucks/) boilerplate.
 
