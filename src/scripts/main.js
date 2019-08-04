@@ -1,13 +1,13 @@
-import jQuery from 'jquery';
+// import jQuery from 'jquery';
 
-(function($) {
-  // START JQUERY.
+// (function($) {
+//   // START JQUERY.
 
-  $('html')
-    .removeClass('no-js')
-    .addClass('js');
+//   $('html')
+//     .removeClass('no-js')
+//     .addClass('js');
 
-  // END JQUERY.
-})(jQuery);
+//   // END JQUERY.
+// })(jQuery);
 
-console.log('main.js works!');
+// console.log('main.js works!');

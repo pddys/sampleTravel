@@ -1,7 +1,5 @@
 {%- block foot -%}
 
-  {%- for script in page.scripts %}
-    <script src="{{ paths.root + paths.scripts }}/{{ script }}.js?ver={{ version }}"></script>
-  {% endfor -%}
+  {%- for script in page.scripts %}  {% endfor -%}
 
 {%- endblock -%}
