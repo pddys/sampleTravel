@@ -23,7 +23,9 @@ document.addEventListener('scroll', function() {
   progressTag.style.width = `${100 * percentage}%`
 })
 
-// When we scroll the page, see how far down the page we have scrolled, then for each section check whether we've passed it, and if we have.. update the text in the header
+// When we scroll the page, see how far down the page we have scrolled,
+// then for each section check whether we've passed it,
+// and if we have.. update the text in the header
 
 document.addEventListener('scroll', function() {
 	const pixels = window.pageYOffset
@@ -42,6 +44,7 @@ document.addEventListener('scroll', function() {
       }
   }) 
 })
+
 
 // When we scroll, make things parallax
 // We want to move certain tags based on how far away they are from an anchor point
@@ -70,4 +73,46 @@ document.addEventListener('scroll', function() {
     const tag = section.querySelector('div.square')
 
   })
+})
+
+//
+// Fade in images once they appear in the viewport
+//
+const animatedTags = document.querySelectorAll("img")
+
+// Fade out on load
+animatedTags.forEach(tag => {
+  tag.style.opacity = 0
+})
+
+const fadeIn = function () {
+  let delay = 0.25
+  // Look through all the animated tags and see with the
+  // getBoundingClientRect if it's in the window
+  animatedTags.forEach(tag => {
+    const tagTop = tag.getBoundingClientRect().top
+    const tagBottom = tag.getBoundingClientRect().bottom
+    
+    if (tagTop < window.innerHeight && tagBottom > 0) {
+      tag.style.animation = `fadein 1s ${delay}s both`
+      delay = delay + 0.25
+      } else {
+        tag.style.opacity = 0
+        tag.style.animation = ""
+      }
+  })
+}
+  
+
+// on load run fade in
+fadeIn()
+
+// on scroll run fade in
+document.addEventListener('scroll', function () {
+  fadeIn()
+})
+
+// on browser resize run fade in
+window.addEventListener('resize', function() {
+  fadeIn()
 })

@@ -77,6 +77,14 @@ div.content img {
   position: relative;
 }
 
+div.content img:nth-child(odd) {
+  max-width: 60vw;
+}
+
+div.content img:nth-child(even) {
+  max-width: 75vw;
+}
+
 .s2 {
   background-color:  #c5c5c5;
 }
@@ -111,5 +119,10 @@ div.content img {
 
 .s4 div.circle {
   background-color:  #5982a0;
+}
+
+@keyframes fadein {
+  0% {opacity:  0;}
+  100% {opacity:  1;}
 }
 
